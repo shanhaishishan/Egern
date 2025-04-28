@@ -1,0 +1,140 @@
+policy_groups:
+- select:
+    name: Google
+    policies:
+    - 所有地区
+    flatten: true
+    icon: https://avatars.githubusercontent.com/u/1342004?s=200&v=4
+- select:
+    name: Telegram
+    policies:
+    - 所有地区
+    flatten: true
+    icon: https://telegram.org/img/apple-touch-icon.png
+- select:
+    name: Twitter
+    policies:
+    - 所有地区
+    flatten: true
+    icon: https://avatars.githubusercontent.com/u/50278?s=200&v=4
+- select:
+    name: YouTube
+    policies:
+    - 所有地区
+    flatten: true
+    icon: https://www.youtube.com/s/desktop/7197d3dc/img/favicon_144x144.png
+- select:
+    name: ChatGPT
+    policies:
+    - 所有地区
+    flatten: true
+    icon: https://avatars.githubusercontent.com/u/14957082?s=200&v=4
+- select:
+    name: Apple
+    policies:
+    - 直连
+    - 所有地区
+    flatten: true
+    icon: https://avatars.githubusercontent.com/u/10639145?s=200&v=4
+- fallback:
+    name: 美国
+    policies:
+    - 所有代理
+    flatten: true
+    filter: (🇺🇸)|(美)|(States)|(US)
+    icon: 🇺🇸
+- fallback:
+    name: 日本
+    policies:
+    - 所有代理
+    flatten: true
+    filter: (🇯🇵)|(日)|(日本)|(JP)
+    icon: 🇯🇵
+- fallback:
+    name: 新加坡
+    policies:
+    - 所有代理
+    flatten: true
+    filter: (🇸🇬)|(新)|(新加坡)|(SG)
+    icon: 🇸🇬
+- select:
+    name: 直连
+    policies:
+    - DIRECT
+    hidden: true
+- select:
+    name: 所有地区
+    policies:
+    - 美国
+    - 日本
+    - 新加坡
+    icon: 😊
+- external:
+    name: 所有订阅
+    type: select
+    urls:
+    - 你的订阅地址
+    icon: 🤣
+- select:
+    name: 所有代理
+    policies:
+    - 所有订阅
+    flatten: true
+    icon: 🌹
+rules:
+- domain_regex:
+    match: ^ad\..*|^ads\..*
+    policy: REJECT
+- rule_set:
+    match: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    policy: REJECT
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Google/Google.list
+    policy: Google
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Telegram/Telegram.list
+    policy: Telegram
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Twitter/Twitter.list
+    policy: Twitter
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/YouTube/YouTube.list
+    policy: YouTube
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/OpenAI/OpenAI.list
+    policy: ChatGPT
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Apple/Apple.list
+    policy: Apple
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Apple/Apple_Domain.list
+    policy: Apple
+- domain:
+    match: ifconfig.me
+    policy: 直连
+- domain_suffix:
+    match: cn
+    policy: 直连
+- geoip:
+    match: CN
+    policy: 直连
+- ip_cidr:
+    match: 192.168.0.0/16
+    policy: 直连
+- ip_cidr:
+    match: 10.0.0.0/8
+    policy: 直连
+- ip_cidr:
+    match: 127.0.0.0/8
+    policy: 直连
+- ip_cidr:
+    match: 172.16.0.0/12
+    policy: 直连
+- ip_cidr:
+    match: 192.128.0.0/16
+    policy: 直连
+- ip_cidr:
+    match: 224.0.0.0/24
+    policy: 直连
+- default:
+    policy: 所有代理
