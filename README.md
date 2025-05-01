@@ -36,9 +36,13 @@
 
 * [BlockAds](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/BlockAds.yaml)
 * [谷歌增强](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/Google_Enhance..yaml)
+* [苹果地图增强](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/Maps.yaml)
+* [Siri增强](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/Siri.yaml)
+* [苹果天气增强](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/WeatherKit.yaml)
 * [高德地图去广告](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/Amap_remove_ads.yaml)
 * [哔哩哔哩去广告](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/BiliBili_remove_ads.yaml)
 * [菜鸟去广告](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/Cainiao_remove_ads.yaml)
+* [Spotify去广告](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/Spotify_remove_ads.yaml)
 * [小红书去广告](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/REDnote_remove_ads.yaml)
 * [微信增强](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/WeChat_Enhance.yaml)
 * [微博去广告](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/Weibo_remove_ads.yaml)
