@@ -1,0 +1,27 @@
+name: 谷歌增强
+description: 谷歌搜索内容时并发使用多个策略，以避免可能出现的人机验证。将Google搜索重定向至.com域名，如遇频繁跳转请禁用本模块。
+open_url: ''
+author: NobyDa[https://github.com/NobyDa],可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+homepage: https://github.com/mist-whisper/Surge/blob/master/README.md
+icon: https://raw.githubusercontent.com/mist-whisper/Icon/master/MyIcon/Google.png
+url_rewrites:
+- match: ^https?://(www.)?g.cn
+  location: https://www.google.com
+  status_code: 302
+- match: ^https?://(www.)?google.cn
+  location: https://www.google.com
+  status_code: 302
+scriptings:
+- http_response:
+    name: Google CAPTCHA
+    match: ^https:\/\/www\.google\.com(?:\.[a-z]+|)\/(?:search\?(?:|.+?&)q=|$)
+    script_url: https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Google_CAPTCHA.js
+    arguments:
+      _compat.$argument: '{{{策略正则}}}'
+    timeout: 10
+    body_required: true
+mitm:
+  hostnames:
+    includes:
+    - www.google.com*
+    - www.google.cn
