@@ -8,7 +8,6 @@
 
 no_resolve: true
 domain_set:
-- ws.intentchat.app
 - openpanel.follow.is
 - webp.follow.is
 - api.follow.is
