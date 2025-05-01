@@ -1,0 +1,18 @@
+name: 小黑盒去广告
+description: 移除开屏广告和热点板块信息流广告
+open_url: ''
+author: 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+homepage: https://github.com/mist-whisper/Surge/blob/master/README.md
+icon: https://raw.githubusercontent.com/mist-whisper/Icon/master/App_icon/120px/XiaoHeiHe.png
+body_rewrites:
+- response_jq:
+    match: ^https:\/\/api\.xiaoheihe\.cn\/bbs\/app\/feeds\/news
+    filter: .result.links |= map(if .content_type == 27 then del(.title, .ad_pm, .img_gif, .idea_id, .ad_report, .label, .source, .intranet_only, .ad_cm, .content_type, .protocol, .img, .ad_ratio) else . end)
+map_locals:
+- match: ^https:\/\/api\.xiaoheihe\.cn\/account\/get_ads_info_v2
+  status_code: 200
+  body: '{}'
+mitm:
+  hostnames:
+    includes:
+    - api.xiaoheihe.cn
