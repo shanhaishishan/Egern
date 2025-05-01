@@ -531,7 +531,7 @@ scriptings:
 - http_response:
     name: 微信外部链接解锁
     match: ^https\:\/\/(weixin110\.qq|security.wechat)\.com\/cgi-bin\/mmspamsupport-bin\/newredirectconfirmcgi\?
-    script_url: https://raw.githubusercontent.com/mist-whisper/Loon/refs/heads/master/Script/Weixin/Weixin_external_links_unlock.js
+    script_url:  https://raw.githubusercontent.com/mist-whisper/Script/refs/heads/master/Weixin/Weixin_external_links_unlock.js
     body_required: true
 - http_response:
     name: EMS中国邮政物流速递去广告
