@@ -1,0 +1,26 @@
+# NAME: Filen
+# AUTHOR: 可莉🅥
+# UPDATED: 2024-07-20 11:14:56
+
+no_resolve: true
+domain_set:
+- cdn.filen.io
+- drive.filen.io
+- egest.filen.io
+- gateway.filen-1.net
+- gateway.filen-2.net
+- gateway.filen-3.net
+- gateway.filen-4.net
+- gateway.filen-5.net
+- gateway.filen.io
+- gateway.filen.net
+- ingest.filen.io
+- socket.filen.io
+domain_suffix_set:
+- filen.io
+- filen.net
+- filen-1.net
+- filen-2.net
+- filen-3.net
+- filen-4.net
+- filen-5.net
