@@ -1,0 +1,8 @@
+# NAME: Duolingo
+# AUTHOR: blackmatrix7
+# UPDATED: 2024-01-08 16:02:59
+
+no_resolve: true
+domain_suffix_set:
+- duolingo.cn
+- duolingo.com
