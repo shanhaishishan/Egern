@@ -26,7 +26,7 @@
 > [!TIP]
 > 仅提供基础配置文件，不提供其他配置和软件教学，详细使用方法请参考[Egern官方文档](https://doc.egernapp.com/zh-CN/docs/intro)自行研究。
 > 
-> 点击复制[Egern基础配置](https://raw.githubusercontent.com/mist-whisper/Shadowrocket/master/Egern.yaml)
+> 点击复制[Egern基础配置](https://raw.githubusercontent.com/mist-whisper/Egern/master/Egern.yaml)
 ------
 
 #### 模块
