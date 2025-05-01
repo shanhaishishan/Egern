@@ -35,6 +35,7 @@
 > 点击下方链接复制模块地址
 
 * [BlockAds](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/BlockAds.yaml)
+* [谷歌增强](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/Google_Enhance..yaml)
 * [高德地图去广告](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/Amap_remove_ads.yaml)
 * [哔哩哔哩去广告](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/BiliBili_remove_ads.yaml)
 * [菜鸟去广告](https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/Cainiao_remove_ads.yaml)
