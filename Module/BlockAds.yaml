@@ -1,0 +1,617 @@
+name: BlockAds
+description: 移除一些小广告，优化一些小功能。
+compat_arguments:
+  Dsenrp55去广告: 跳转外部播放器
+compat_arguments_desc: '[参数设置]\nDsenrp55去广告:跳转外部播放器脚本启停\n   ├ 跳转外部播放器：启用（默认值）\n   └ 填入"#"：注释停用'
+open_url: ''
+author: RuCu6[https://github.com/RuCu6]
+homepage: https://github.com/mist-whisper/Surge/blob/master/README.md
+icon: https://raw.githubusercontent.com/mist-whisper/Icon/master/MyIcon/BlockAds.png
+rules:
+- domain:
+    match: ad.12306.cn
+    policy: DIRECT
+- domain_suffix:
+    match: ut.taobao.com
+    policy: REJECT
+- domain:
+    match: dns.alidns.com
+    policy: REJECT
+- domain:
+    match: ems.youku.com
+    policy: REJECT
+- domain:
+    match: hudong.alicdn.com
+    policy: REJECT
+- domain:
+    match: ossgw.alicdn.com
+    policy: REJECT
+- ip_cidr:
+    match: 203.107.1.1/24
+    policy: REJECT
+    no_resolve: true
+- domain_keyword:
+    match: safebrowsing.
+    policy: REJECT
+- domain_suffix:
+    match: u3.ucweb.com
+    policy: REJECT
+- domain:
+    match: lookup.api.bsb.baidu.com
+    policy: REJECT
+- domain_suffix:
+    match: pos.baidu.com
+    policy: REJECT
+- domain:
+    match: mobads.baidu.com
+    policy: REJECT
+- ip_cidr:
+    match: 180.76.76.112/32
+    policy: REJECT
+    no_resolve: true
+- ip_cidr:
+    match: 180.76.76.200/32
+    policy: REJECT
+    no_resolve: true
+- domain:
+    match: afd.baidu.com
+    policy: REJECT
+- domain:
+    match: afdconf.baidu.com
+    policy: REJECT
+- domain:
+    match: lc.map.baidu.com
+    policy: REJECT
+- domain:
+    match: api.helloclue.com
+    policy: REJECT
+- domain:
+    match: brahe.apptimize.com
+    policy: REJECT
+- domain:
+    match: collector.clue.run
+    policy: REJECT
+- domain:
+    match: images.ctfassets.net
+    policy: REJECT
+- domain:
+    match: mapi.apptimize.com
+    policy: REJECT
+- domain:
+    match: md-i-s.apptimize.com
+    policy: REJECT
+- domain:
+    match: adttrackingprd.hwwt8.com
+    policy: REJECT
+- domain_suffix:
+    match: mall.icbc.com.cn
+    policy: REJECT
+- domain:
+    match: pageviewp.icbc.com.cn
+    policy: REJECT
+- domain_suffix:
+    match: ehaier.com
+    policy: REJECT
+- and:
+    match:
+    - url_regex:
+        match: ^http:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch
+    - user_agent:
+        match: Hema4iPhone*
+    policy: REJECT
+- domain_keyword:
+    match: httpdns.
+    policy: REJECT
+- domain_keyword:
+    match: httpdns-
+    policy: REJECT
+- domain:
+    match: hdns.ksyun.com
+    policy: REJECT
+- domain_keyword:
+    match: adv.ccb.com
+    policy: REJECT
+- domain:
+    match: statics.woozooo.com
+    policy: REJECT
+- domain:
+    match: maplocatesdksnapshot.d.meituan.net
+    policy: REJECT
+- domain:
+    match: metrics-picture.d.meituan.net
+    policy: REJECT
+- ip_cidr:
+    match: 103.37.155.60/32
+    policy: REJECT
+    no_resolve: true
+- domain:
+    match: aaid.uyunad.com
+    policy: REJECT
+- domain:
+    match: adui.tg.meitu.com
+    policy: REJECT
+- domain:
+    match: acdn.adnxs.com
+    policy: REJECT
+- domain:
+    match: mediation.adnxs.com
+    policy: REJECT
+- domain:
+    match: sin3-ib.adnxs.com
+    policy: REJECT
+- domain:
+    match: sdkconfig.ad.xiaomi.com
+    policy: REJECT
+- domain:
+    match: ads.95516.com
+    policy: REJECT
+- domain:
+    match: switch.cup.com.cn
+    policy: REJECT
+- domain_suffix:
+    match: creative.myavlive.com
+    policy: REJECT
+- domain_suffix:
+    match: trackwilltrk.com
+    policy: REJECT
+- domain_suffix:
+    match: tsyndicate.com
+    policy: REJECT
+url_rewrites:
+- match: ^https:\/\/list-app-m\.i4\.cn\/(?:adclickcb|getHotSearchList|getopfstadinfo)\.xhtml
+  location: http://reject/
+  status_code: 307
+- match: ^https?:\/\/img\d\.doubanio\.com\/view\/dale-online\/dale_ad\/
+  location: http://reject/
+  status_code: 307
+- match: ^https?:\/\/frodo\.douban\.com\/api\/v2\/movie\/banner
+  location: http://reject/
+  status_code: 307
+- match: ^https?:\/\/erebor\.douban\.com\/count\/\?ad=
+  location: http://reject/
+  status_code: 307
+- match: ^http:\/\/image1\.ccb\.com\/newsinfo\/eBranch\/check\/(?:nf\/newfin\/activity|po\/poortheme\/activity)\/\w+\.png
+  location: http://reject/
+  status_code: 307
+- match: ^https:\/\/wallet\.95516\.com(:10533)?\/s\/wl\/icon\/large\/1
+  location: http://reject/
+  status_code: 307
+- match: ^https:\/\/asserts\.avple\.tv\/file\/avple-images\/ad\.js
+  location: http://reject/
+  status_code: 307
+- match: ^https:\/\/(?:cn|www)\.pornhub\.com\/_xa\/ads(_batch)?\?
+  location: http://reject/
+  status_code: 307
+- match: ^https:\/\/dsenrp55\.com\/tabbar[356]$
+  location: https://dsenrp55.com/tabbar1
+  status_code: 302
+header_rewrites:
+- replace:
+    match: ^https:\/\/github\.com\/
+    name: Accept-Language
+    value: en-us
+    type: request
+body_rewrites:
+- response_jq:
+    match: ^https:\/\/api\.m\.mi\.com\/v1\/order\/expressView
+    filter: delpaths([["data","bottom","ad_info"]])
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/6\.html$
+    find: <style>
+    replace: <style>
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/6\.html$
+    find: .video-list
+    replace: '>'
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/6\.html$
+    find: .video-item:nth-of-type(-n+2)
+    replace: '{'
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/6\.html$
+    find: display:none
+    replace: '!important}'
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/6\.html$
+    find: .gotoclick{
+    replace: display:none
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/6\.html$
+    find: '!important}'
+    replace: .modal{
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/6\.html$
+    find: display:none
+    replace: '!important}'
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/6\.html$
+    find: .addbox{
+    replace: display:none
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/6\.html$
+    find: '!important}'
+    replace: ''
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/20\.html$
+    find: <style>
+    replace: <style>
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/20\.html$
+    find: .video-list
+    replace: '>'
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/20\.html$
+    find: .video-item:nth-of-type(3)
+    replace: '{'
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/20\.html$
+    find: display:none
+    replace: '!important}'
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/20\.html$
+    find: .gotoclick{
+    replace: display:none
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/20\.html$
+    find: '!important}'
+    replace: .modal{
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/20\.html$
+    find: display:none
+    replace: '!important}'
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/20\.html$
+    find: .addbox{
+    replace: display:none
+- response_regex:
+    match: ^https?:\/\/[^\/]+\/category\/20\.html$
+    find: '!important}'
+    replace: ''
+- response_regex:
+    match: ^https:\/\/18hlw\.com
+    find: <style>
+    replace: <style>
+- response_regex:
+    match: ^https:\/\/18hlw\.com
+    find: .gotoclick{
+    replace: display:none
+- response_regex:
+    match: ^https:\/\/18hlw\.com
+    find: '!important}'
+    replace: .modal{
+- response_regex:
+    match: ^https:\/\/18hlw\.com
+    find: display:none
+    replace: '!important}'
+- response_regex:
+    match: ^https:\/\/18hlw\.com
+    find: .addbox{
+    replace: display:none
+- response_regex:
+    match: ^https:\/\/18hlw\.com
+    find: '!important}'
+    replace: ''
+- response_regex:
+    match: ^https:\/\/lneuk\.rslsilne\.cc
+    find: <style>
+    replace: <style>
+- response_regex:
+    match: ^https:\/\/lneuk\.rslsilne\.cc
+    find: .gotoclick{
+    replace: display:none
+- response_regex:
+    match: ^https:\/\/lneuk\.rslsilne\.cc
+    find: '!important}'
+    replace: .modal{
+- response_regex:
+    match: ^https:\/\/lneuk\.rslsilne\.cc
+    find: display:none
+    replace: '!important}'
+- response_regex:
+    match: ^https:\/\/lneuk\.rslsilne\.cc
+    find: .addbox{
+    replace: display:none
+- response_regex:
+    match: ^https:\/\/lneuk\.rslsilne\.cc
+    find: '!important}'
+    replace: ''
+- response_regex:
+    match: ^https:\/\/7054s\.rbcmpeu\.org
+    find: <style>
+    replace: <style>
+- response_regex:
+    match: ^https:\/\/7054s\.rbcmpeu\.org
+    find: .gotoclick{
+    replace: display:none
+- response_regex:
+    match: ^https:\/\/7054s\.rbcmpeu\.org
+    find: '!important}'
+    replace: .modal{
+- response_regex:
+    match: ^https:\/\/7054s\.rbcmpeu\.org
+    find: display:none
+    replace: '!important}'
+- response_regex:
+    match: ^https:\/\/7054s\.rbcmpeu\.org
+    find: .addbox{
+    replace: display:none
+- response_regex:
+    match: ^https:\/\/7054s\.rbcmpeu\.org
+    find: '!important}'
+    replace: ''
+- response_regex:
+    match: ^https:\/\/d2bkn61acaxm61\.cloudfront\.net
+    find: <style>
+    replace: <style>
+- response_regex:
+    match: ^https:\/\/d2bkn61acaxm61\.cloudfront\.net
+    find: .gotoclick{
+    replace: display:none
+- response_regex:
+    match: ^https:\/\/d2bkn61acaxm61\.cloudfront\.net
+    find: '!important}'
+    replace: .modal{
+- response_regex:
+    match: ^https:\/\/d2bkn61acaxm61\.cloudfront\.net
+    find: display:none
+    replace: '!important}'
+- response_regex:
+    match: ^https:\/\/d2bkn61acaxm61\.cloudfront\.net
+    find: .addbox{
+    replace: display:none
+- response_regex:
+    match: ^https:\/\/d2bkn61acaxm61\.cloudfront\.net
+    find: '!important}'
+    replace: ''
+- response_regex:
+    match: ^https:\/\/dsenrp55\.com\/tabbar
+    find: </head>
+    replace: </head><style>.swiperBox,.adBox,.ad,.adItem,.start-page-container,.n-container,.intercept-18,div.van-tabbar-item:first-of-type,div.van-tabbar-item:last-of-type{display:none!important}img.back{margin:40px!important}</style>
+map_locals:
+- match: ^https:\/\/api\.alipan\.com\/adrive\/v1\/file\/getTopFolders
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/member\.alipan\.com\/v2\/activity\/sign_in_luckyBottle
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.(?:allresource|predict)
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.advertisementservice\.getadv
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alimama\.etao\.config\.query\/.+?etao_advertise
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alimusic\.common\.mobileservice\.startinit
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.etao\.noah\.query\/.+tao_splash
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.film\.mtopadvertiseapi\.queryadvertise
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.o2o\.ad\.gateway\.get
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.activity\.querytmsresources
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/heic\.alicdn\.com\/imgextra\/i\d\/\d*\/?[\w!]+-\d-(?:octopus|tps-1125-1602|tps-1080-1920)\.(?:jpg|png)_(?:1\d{3}|9\d{2})x(?:1\d{3}|9\d{2})q[59]0
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.adx\.flyad\.getad
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(?:volvo\.secondfloor\.getconfig|wireless\.home\.newface\.awesome\.get)
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/pan\.baidu\.com\/(?:act\/|aipic\/|aisearch\/|api\/getsyscfg\?|rest\/)
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/api\.douban\.com\/v2\/app_ads\/splash\w+
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/(?:img|qnmob)3\.doubanio\.com\/view\/dale-online\/dale_ad\/public\/\w+
+  status_code: 200
+  body: '{}'
+- match: ^https?:\/\/api\.douban\.com\/v\d\/app_ads\/
+  status_code: 200
+  body: '{}'
+- match: ^https?:\/\/api\.douban\.com\/b.*\/common_ads\?.*
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/hfapp-service\.qweather\.net\/v2\.0\/app\/ad\/list\?
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/acs-m\.freshippo\.com\/gw\/mtop\.wdk\.render\.querysinglepage\/
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/api\.coolapk\.com\/v6\/search\?.*type=hotSearch
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/p0\.pipi\.cn\/(?:adAdmin|mediaplus\/maoyantong_ads_fe)\/\w+\.jpg\?imageMogr2\/quality\/
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/p0\.pipi\.cn\/(?:adAdmin|mediaplus\/maoyantong_ads_fe)\/\w+\.(?:jpg|png)\?imageMogr2\/thumbnail\/(?:860x0|!165x165|!1049x1169)
+  status_code: 200
+  body: '{}'
+- match: ^http:\/\/app-cdn\.2q10\.com\/app\/ical\/honored\?
+  status_code: 200
+  body: '{}'
+- match: ^http:\/\/wmapi\.meituan\.com\/api\/v7\/(?:loadInfo|openscreen|startpicture)
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/flowplus\.meituan\.net\/v1\/mss_\w+\/linglong\/\d+\.jpg
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/img\.meituan\.net\/bizad\/bizad_brandCpt_\d+\.jpg
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/s3plus\.meituan\.net\/ocean-blk-index\/index\/blk_conf_\d+\.json
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/s3plus\.meituan\.net\/v1\/mss_\w+\/(?:brandcpt-vedio|waimai-alita)\/\w+\.zip$
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/osg-service\.sgcc\.com\.cn:18600\/emss-pfa-appset-front\/bootpageoutter\/
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/api\.m\.mi\.com\/(?:v1\/(?:app\/popup_info|home\/page_feed|misearch\/search_input)|v2\/search\/search_default)
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/shop-api\.retail\.mi\.com\/mtop\/navi\/(?:rec\/merge\/|skywheel\/mishop\/splash)
+  status_code: 200
+  body: '{}'
+- match: ^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/(?:banner|carousel\/banners|myTab|openingBanner)
+  status_code: 200
+  body: '{}'
+scriptings:
+- http_request:
+    name: 移除12306广告
+    match: ^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/12306.js
+    body_required: true
+- http_response:
+    name: 移除12306广告
+    match: ^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/header.js
+- http_response:
+    name: 移除阿里云盘广告
+    match: ^https:\/\/(biz)?api\.alipan\.com\/apps\/v\d\/users?\/home\/(?:news|widgets)
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Adrive.js
+    body_required: true
+- http_response:
+    name: 移除阿里云盘广告
+    match: ^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Adrive.js
+    body_required: true
+- http_response:
+    name: 移除阿里巴巴广告
+    match: ^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(?:cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get)
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/BlockAds.js
+    body_required: true
+- http_response:
+    name: 移除阿里巴巴广告
+    match: ^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/BlockAds.js
+    body_required: true
+- http_response:
+    name: 移除草榴社区广告
+    match: ^https:\/\/2023\.redircdn\.com\/web\/mob_post\.js\?
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/BlockAds.js
+    body_required: true
+- http_response:
+    name: 移除大众点评广告
+    match: ^https?:\/\/img\.meituan\.net\/dpmobile\/
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Dianping.js
+    timeout: 60
+    body_required: true
+- http_response:
+    name: 移除酷安广告
+    match: ^https:\/\/api\.coolapk\.com\/v6\/(?:feed\/detail|feed\/replyList|page\/dataList|main\/dataList|main\/indexV8|main\/init)
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Coolapk.js
+    body_required: true
+- http_response:
+    name: 移除小米商城广告
+    match: ^https:\/\/api\.m\.mi\.com\/v1\/app\/start
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/BlockAds.js
+    body_required: true
+- http_response:
+    name: 移除中国移动云盘广告
+    match: ^https:\/\/ad\.mcloud\.139\.com\/advertapi\/adv-filter\/
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Cloud139.js
+    body_required: true
+- http_response:
+    name: 移除中国移动云盘广告
+    match: ^https:\/\/jzts\.cmpassport\.com\/personalized\/getPushContent
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Cloud139.js
+    body_required: true
+- http_request:
+    name: 百度防跳转
+    match: ^https:\/\/boxer\.baidu\.com\/scheme\?scheme
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/BaiduNoRedirect.js
+- http_response:
+    name: 移除百度首页广告
+    match: ^https:\/\/(?:www|m)\.baidu\.com(\/|\/\?(tn=&)?from=\d+\w)?$
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/BaiduIndex.js
+    body_required: true
+- http_response:
+    name: 移除百度知道广告
+    match: ^https:\/\/zhidao\.baidu\.com\/(?:question|index|\?fr|\?word)
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/BaiduZhidao.js
+    body_required: true
+- http_response:
+    name: 移除JavDB广告
+    match: ^https:\/\/javdb\.com\/
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Javdb.js
+    body_required: true
+- http_response:
+    name: 移除Missav广告
+    match: ^https:\/\/missav\.(?:ai|ws)\/(?!(build|fonts|img|js|api|cdn-cgi)\/).
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Missav.js
+    body_required: true
+- http_request:
+    name: '{{{Dsenrp55去广告}}}'
+    match: ^https:\/\/ghfgnm\.com\/mmapi\/m3u8\/p\/.+\.m3u8
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Dsenrp55.js
+    timeout: 60
+    body_required: true
+mitm:
+  hostnames:
+    includes:
+    - ad.12306.cn
+    - mobile.12306.cn
+    - list-app-m.i4.cn
+    - '*api.alipan.com'
+    - member.alipan.com
+    - acs.m.taobao.com
+    - heic.alicdn.com
+    - guide-acs.m.taobao.com
+    - poplayer.template.alibaba.com
+    - pan.baidu.com
+    - 2023.redircdn.com
+    - www.washpayer.com
+    - api.douban.com
+    - img3.doubanio.com
+    - qnmob3.doubanio.com
+    - img*.douban.com
+    - frodo.douban.com
+    - erebor.douban.com
+    - image.mybank.icbc.com.cn
+    - hfapp-service.qweather.net
+    - acs-m.freshippo.com
+    - gab.122.gov.cn
+    - api.coolapk.com
+    - adserviceretry.kglink.cn
+    - p0.pipi.cn
+    - flowplus.meituan.net
+    - img.meituan.net
+    - s3plus.meituan.net
+    - osg-service.sgcc.com.cn
+    - api.m.mi.com
+    - home.mi.com
+    - shop-api.retail.mi.com
+    - wallet.95516.com
+    - mobilepaas.abchina.com.cn
+    - ad.mcloud.139.com
+    - jzts.cmpassport.com
+    - boxer.baidu.com
+    - m.baidu.com
+    - www.baidu.com
+    - zhidao.baidu.com
+    - asserts.avple.tv
+    - javdb.com
+    - '*.pornhub.com'
+    - 18hlw.com
+    - lneuk.rslsilne.cc
+    - 7054s.rbcmpeu.org
+    - d2bkn61acaxm61.cloudfront.net
+    - missav.ai
+    - missav.ws
+    - dsenrp55.com
+    - ghfgnm.com
