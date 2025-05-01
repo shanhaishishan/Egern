@@ -1,0 +1,16 @@
+# NAME: EmbyMainland
+# AUTHOR: Edward
+# UPDATED: 2025-04-20
+
+domain_set:
+- 7777777.buzz
+- 581658.best
+- 0570.123456.buzz
+- cf.imetyou.top
+- music.mefun.org
+domain_keyword_set:
+- temby
+domain_suffix_set:
+- 285286.xyz
+ip_cidr_set:
+- 193.122.114.13/32
