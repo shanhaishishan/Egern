@@ -1,0 +1,18 @@
+# NAME: EmbyGlobal
+# AUTHOR: wish
+# UPDATED: 2025-04-16
+
+no_resolve: true
+domain_set:
+- yhemby.top
+- pub1.emby.wtf
+- pub1.term.wtf
+- pub2.emby.wtf
+- pub2.term.wtf
+- pub3.emby.wtf
+- pub3.term.wtf
+domain_keyword_set:
+- wtf
+- emby.wtf
+domain_suffix_set:
+- emby.wtf
