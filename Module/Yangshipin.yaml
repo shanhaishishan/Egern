@@ -1,0 +1,25 @@
+name: 央视频去广告
+description: 去除赛事直播前的广告。
+open_url: ''
+author: Yu9191[https://github.com/Yu9191]
+homepage: https://github.com/mist-whisper/Surge/blob/master/README.md
+icon: https://raw.githubusercontent.com/mist-whisper/Icon/master/App_icon/120px/YangShiPin.png
+url_rewrites:
+- match: '&guid=[\w-]+&app_version=[\d\.]+&spadseg=\d&userid=(\d*)?'
+  location: '&guid=f066be2cdf1c4f4893eb818de454313a&app_version=3.0.0.23522&spadseg=3&userid=234090757'
+  status_code: 302
+map_locals:
+- match: ^https?:\/\/cdn\.cmgadx\.com\/sdk\/pool\/.+\.json
+  status_code: 200
+  body: '{}'
+scriptings:
+- http_request:
+    name: 央视频去广告
+    match: ^http:\/\/(liveinfo|bkliveinfo|playvv)\.ysp\.cctv\.cn\/(playvinfo\?.+|.*)
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/Yangshipin/Yangshipin_remove_ads.js
+    timeout: 60
+mitm:
+  hostnames:
+    includes:
+    - '*.ysp.cctv.cn'
+    - cdn.cmgadx.com
