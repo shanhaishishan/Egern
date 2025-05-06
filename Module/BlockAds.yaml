@@ -368,6 +368,8 @@ body_rewrites:
     find: </head>
     replace: </head><style>.swiperBox,.adBox,.ad,.adItem,.start-page-container,.n-container,.intercept-18,div.van-tabbar-item:first-of-type,div.van-tabbar-item:last-of-type{display:none!important}img.back{margin:40px!important}</style>
 map_locals:
+- match: ^https:\/\/api\.xiaoyuzhoufm\.com\/v1\/flash-screen\/list
+  status_code: 200
 - match: ^https:\/\/api\.alipan\.com\/adrive\/v1\/file\/getTopFolders
   status_code: 200
   body: '{}'
@@ -615,3 +617,4 @@ mitm:
     - missav.ws
     - dsenrp55.com
     - ghfgnm.com
+    - api.xiaoyuzhoufm.com
