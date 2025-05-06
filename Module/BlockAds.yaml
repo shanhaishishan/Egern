@@ -4,7 +4,7 @@ compat_arguments:
   Dsenrp55去广告: 跳转外部播放器
 compat_arguments_desc: '[参数设置]\nDsenrp55去广告:跳转外部播放器脚本启停\n   ├ 跳转外部播放器：启用（默认值）\n   └ 填入"#"：注释停用'
 open_url: ''
-author: RuCu6[https://github.com/RuCu6]
+author: RuCu6[https://github.com/RuCu6],fishdown[https://github.com/fishdown],wish[https://github.com/mist-whisper]
 homepage: https://github.com/mist-whisper/Surge/blob/master/README.md
 icon: https://raw.githubusercontent.com/mist-whisper/Icon/master/MyIcon/BlockAds.png
 rules:
