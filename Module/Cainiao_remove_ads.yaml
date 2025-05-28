@@ -1,9 +1,7 @@
 name: 菜鸟去广告
 description: 过滤菜鸟广告，移除推广模块
-open_url: ''
 author: RuCu6[https://github.com/RuCu6]
 homepage: https://github.com/mist-whisper/Surge/blob/master/README.md
-icon: https://raw.githubusercontent.com/mist-whisper/Icon/master/App_icon/120px/Cainiao.png
 rules:
 - and:
     match:
@@ -13,16 +11,25 @@ rules:
         match: Cainiao4iPhone*
     policy: REJECT
 - domain:
+    match: acs4baichuan.m.taobao.com
+    policy: REJECT
+- domain:
     match: adsmind.ugdtimg.com
     policy: REJECT
 - domain:
     match: amdc.m.youku.com
     policy: REJECT
 - domain:
+    match: api.sm.cn
+    policy: REJECT
+- domain:
     match: apiv4-iyes.youku.com
     policy: REJECT
 - domain:
-    match: httpdns.alicdn.com
+    match: baichuan-sdk.alicdn.com
+    policy: REJECT
+- domain:
+    match: cad.youku.com
     policy: REJECT
 - domain:
     match: huichuan-mc.sm.cn
@@ -34,7 +41,16 @@ rules:
     match: iyes.youku.com
     policy: REJECT
 - domain:
+    match: m-vali.cp31.ott.cibntv.net
+    policy: REJECT
+- domain:
     match: mc.atm.youku.com
+    policy: REJECT
+- domain:
+    match: nbsdk-baichuan.alicdn.com
+    policy: REJECT
+- domain:
+    match: pre-acs.youku.com
     policy: REJECT
 - domain:
     match: vali-g1.cp31.ott.cibntv.net
@@ -48,73 +64,104 @@ rules:
 - domain:
     match: ykad-data.youku.com
     policy: REJECT
-url_rewrites:
-- match: ^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads
-  location: http://reject/
-  status_code: 307
+- domain:
+    match: youku-acs.m.taobao.com
+    policy: REJECT
 map_locals:
 - match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.app\.home\.tabbar\.marketing\.get\.cn
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.adkeyword\.get\.cn
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.cncommunity\.my\.station\.query\.cn
   status_code: 200
-  body: '{}'
-- match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.(batch\.show\.v2|expose\.mreply|index)\.cn
-  status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbopen\.miniapp\.recommend\.cpc\.cn
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
-- match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbmensa\.research\.researchservice\.(acquire|event|close)\.cn
+- match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbmensa\.research\.researchservice\.(?:acquire|event|close)\.cn
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
-- match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(homepage\.merge|tabbar\.marketing)\.get\.cn
+- match: ^https:\/\/(?:cn-acs\.m|netflow-mtop)\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.(?:batch\.show\.v2|click\.reply|expose\.m?reply|index)\.cn
   status_code: 200
+  headers:
+    Content-Type: application/json
+  body: '{}'
+- match: ^https:\/\/(?:cn-acs\.m|mtop-bff-mtop)\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(?:homepage\.merge|tabbar\.marketing)\.get\.cn
+  status_code: 200
+  headers:
+    Content-Type: application/json
+  body: '{}'
+- match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbcps\.presentation\.fetch\.cn
+  status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.com\.cainiao\.cnactivitycenter
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.com\.cainiao\.cncreditmarket\.hit\.getactivityhit\.cn
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.com\.cainiao\.longquan\.place\.getpageresourcecontent\.cn
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.adx\.flyad\.getad
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 scriptings:
 - http_response:
+    name: 移除新版我的页面推广
+    match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.app\.e2e\.engine\.page\.fetch\.cn
+    script_url: https://kelee.one/Resource/Script/Cainiao/Cainiao_remove_ads.js
+    body_required: true
+- http_response:
     name: 移除我的页面推广
     match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.app\.mine\.main\.cn
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/refs/heads/master/Cainiao/Cainiao_remove_ads.js
+    script_url: https://kelee.one/Resource/Script/Cainiao/Cainiao_remove_ads.js
     body_required: true
 - http_response:
-    name: 移除首页推广
-    match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.m?show\.cn
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/refs/heads/master/Cainiao/Cainiao_remove_ads.js
-    body_required: true
-- http_response:
-    name: 移除首页推广
-    match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(pickup\.empty\.page|protocol\.homepage)\.get\.cn
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/refs/heads/master/Cainiao/Cainiao_remove_ads.js
+    name: 移除主页图标
+    match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.nbpresentation\.(?:pickup\.empty\.page|protocol\.homepage)\.get\.cn
+    script_url: https://kelee.one/Resource/Script/Cainiao/Cainiao_remove_ads.js
     body_required: true
 - http_response:
     name: 移除消息中心推广
     match: ^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.nbfriend\.message\.conversation\.list\.cn
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/refs/heads/master/Cainiao/Cainiao_remove_ads.js
+    script_url: https://kelee.one/Resource/Script/Cainiao/Cainiao_remove_ads.js
     body_required: true
 - http_response:
-    name: 移除菜鸟小程序推广
+    name: 移除支付宝菜鸟小程序推广
     match: ^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.mshow
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/refs/heads/master/Cainiao/Cainiao_remove_ads.js
+    script_url: https://kelee.one/Resource/Script/Cainiao/Cainiao_remove_ads.js
+    body_required: true
+- http_response:
+    name: 移除首页推广
+    match: ^https:\/\/(?:cn-acs\.m|netflow-mtop)\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.m?show\.cn
+    script_url: https://kelee.one/Resource/Script/Cainiao/Cainiao_remove_ads.js
     body_required: true
 mitm:
   hostnames:
     includes:
+    - '*-mtop.cainiao.com'
     - cn-acs.m.cainiao.com
     - guide-acs.m.taobao.com
-    - amdc.m.taobao.com
