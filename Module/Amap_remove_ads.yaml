@@ -1,9 +1,6 @@
 name: 高德地图去广告
 description: 过滤高德地图广告
-open_url: ''
 author: RuCu6[https://github.com/RuCu6],kokoryh[https://github.com/kokoryh]
-homepage: https://github.com/mist-whisper/Surge/blob/master/README.md
-icon: https://raw.githubusercontent.com/mist-whisper/Icon/master/App_icon/120px/Amap.png
 rules:
 - and:
     match:
@@ -40,39 +37,63 @@ body_rewrites:
 map_locals:
 - match: ^https:\/\/m5\.amap\.com\/ws\/shield\/search\/new_hotword\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/card-service-(?:car-end|route-plan)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/m5\.amap\.com\/ws\/shield\/search_poi\/tips_adv\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/oss\.amap\.com\/ws\/banner\/lists\/\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/m5\.amap\.com\/ws\/aos\/main\/page\/product\/list\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/(?:main-page-assets|main-page-location|ridewalk-end-fc)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/m5\.amap\.com\/ws\/(?:mapapi\/hint_text\/offline_data|message\/notice\/list|shield\/search\/new_hotword)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/m5\.amap\.com\/ws\/shield\/scene\/recommend\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/m5\.amap\.com\/ws\/valueadded\/weather\/v2\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/sns\.amap\.com\/ws\/msgbox\/pull_mp\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/m5-zb\.amap\.com\/ws\/boss\/(?:order\/car\/(?:feedback\/get_card_questions|feedback\/viptips|king_toolbox_car_bubble|remark\/satisfactionConf|rights_information)|tips\/onscene_visual_optimization)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/m5-zb\.amap\.com\/ws\/boss\/pay\/web\/paySuccess\/info\/request
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 scriptings:
 - http_response:
