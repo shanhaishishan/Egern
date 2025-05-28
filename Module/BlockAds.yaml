@@ -3,10 +3,7 @@ description: 移除一些小广告，优化一些小功能。
 compat_arguments:
   Dsenrp55去广告: 跳转外部播放器
 compat_arguments_desc: '[参数设置]\nDsenrp55去广告:跳转外部播放器脚本启停\n   ├ 跳转外部播放器：启用（默认值）\n   └ 填入"#"：注释停用'
-open_url: ''
 author: RuCu6[https://github.com/RuCu6],fishdown[https://github.com/fishdown],wish[https://github.com/mist-whisper]
-homepage: https://github.com/mist-whisper/Surge/blob/master/README.md
-icon: https://raw.githubusercontent.com/mist-whisper/Icon/master/MyIcon/BlockAds.png
 rules:
 - domain:
     match: ad.12306.cn
@@ -62,27 +59,6 @@ rules:
 - domain:
     match: lc.map.baidu.com
     policy: REJECT
-- domain:
-    match: api.helloclue.com
-    policy: REJECT
-- domain:
-    match: brahe.apptimize.com
-    policy: REJECT
-- domain:
-    match: collector.clue.run
-    policy: REJECT
-- domain:
-    match: images.ctfassets.net
-    policy: REJECT
-- domain:
-    match: mapi.apptimize.com
-    policy: REJECT
-- domain:
-    match: md-i-s.apptimize.com
-    policy: REJECT
-- domain:
-    match: adttrackingprd.hwwt8.com
-    policy: REJECT
 - domain_suffix:
     match: mall.icbc.com.cn
     policy: REJECT
@@ -100,15 +76,6 @@ rules:
         match: Hema4iPhone*
     policy: REJECT
 - domain_keyword:
-    match: httpdns.
-    policy: REJECT
-- domain_keyword:
-    match: httpdns-
-    policy: REJECT
-- domain:
-    match: hdns.ksyun.com
-    policy: REJECT
-- domain_keyword:
     match: adv.ccb.com
     policy: REJECT
 - domain:
@@ -124,12 +91,6 @@ rules:
     match: 103.37.155.60/32
     policy: REJECT
     no_resolve: true
-- domain:
-    match: aaid.uyunad.com
-    policy: REJECT
-- domain:
-    match: adui.tg.meitu.com
-    policy: REJECT
 - domain:
     match: acdn.adnxs.com
     policy: REJECT
@@ -156,6 +117,93 @@ rules:
     policy: REJECT
 - domain_suffix:
     match: tsyndicate.com
+    policy: REJECT
+- domain:
+    match: mi.gdt.qq.com
+    policy: REJECT
+- domain:
+    match: adsmind.ugdtimg.com
+    policy: REJECT
+- domain:
+    match: pgdt.ugdtimg.com
+    policy: REJECT
+- domain:
+    match: v2mi.gdt.qq.com
+    policy: REJECT
+- domain:
+    match: da.bridgeturbo.com
+    policy: REJECT
+- domain:
+    match: adx-os.bridgeturbo.com
+    policy: REJECT
+- domain:
+    match: adx-bj.anythinktech.com
+    policy: REJECT
+- domain_suffix:
+    match: gum.criteo.com
+    policy: REJECT
+- domain_suffix:
+    match: ads.inmobi.com
+    policy: REJECT
+- domain_suffix:
+    match: cdn2.inner-active.mobi
+    policy: REJECT
+- domain_suffix:
+    match: sdk-dnt.ad.smaato.net
+    policy: REJECT
+- domain_suffix:
+    match: sdk-events.inner-active.mobi
+    policy: REJECT
+- domain_suffix:
+    match: ow.pubmatic.com
+    policy: REJECT
+- domain_suffix:
+    match: bidder.criteo.com
+    policy: REJECT
+- domain_suffix:
+    match: googleads.g.doubleclick-cn.net
+    policy: REJECT
+- domain_suffix:
+    match: wv.inner-active.mobi
+    policy: REJECT
+- domain_suffix:
+    match: c.amazon-adsystem.com
+    policy: REJECT
+- domain_suffix:
+    match: googleads.g.doubleclick-cn.net
+    policy: REJECT
+- domain_suffix:
+    match: cr.adsappier.com
+    policy: REJECT
+- domain_suffix:
+    match: ads.inmobi.com
+    policy: REJECT
+- domain_suffix:
+    match: tappx.com
+    policy: REJECT
+- domain_suffix:
+    match: criteo.com
+    policy: REJECT
+- domain_suffix:
+    match: pubmatic.com
+    policy: REJECT
+- domain_suffix:
+    match: smaato.net
+    policy: REJECT
+- domain_suffix:
+    match: amazon-adsystem.com
+    policy: REJECT
+- domain_keyword:
+    match: googleads
+    policy: REJECT
+- domain_suffix:
+    match: adsappier.com
+    policy: REJECT
+- domain_suffix:
+    match: appier.net
+    policy: REJECT
+- domain_suffix:
+    match: appiersig.com
     policy: REJECT
 url_rewrites:
 - match: ^https:\/\/list-app-m\.i4\.cn\/(?:adclickcb|getHotSearchList|getopfstadinfo)\.xhtml
@@ -186,6 +234,21 @@ url_rewrites:
   location: https://dsenrp55.com/tabbar1
   status_code: 302
 header_rewrites:
+- replace:
+    match: ^https:\/\/(.*\.)?kelee\.one(\/.*)?
+    name: User-Agent
+    value: Surge iOS/9527
+    type: request
+- add:
+    match: ^https:\/\/(.*\.)?kelee\.one(\/.*)?
+    name: content-disposition
+    value: inline
+    type: response
+- replace:
+    match: ^https:\/\/(.*\.)?kelee\.one(\/.*)?
+    name: content-type
+    value: text/plain; charset=utf-8
+    type: response
 - replace:
     match: ^https:\/\/github\.com\/
     name: Accept-Language
@@ -368,109 +431,210 @@ body_rewrites:
     find: </head>
     replace: </head><style>.swiperBox,.adBox,.ad,.adItem,.start-page-container,.n-container,.intercept-18,div.van-tabbar-item:first-of-type,div.van-tabbar-item:last-of-type{display:none!important}img.back{margin:40px!important}</style>
 map_locals:
-- match: ^https:\/\/api\.xiaoyuzhoufm\.com\/v1\/flash-screen\/list
+- match: ^http:\/\/advertise\.baicizhan\.com\/rpc\/advertise\/get_startup_ad
   status_code: 200
+  headers:
+    Content-Type: application/json
+  body: '{}'
+- match: ^https:\/\/spamblocker-api\.zeekstudio\.com\/profile
+  status_code: 200
+  headers:
+    Content-Type: application/json
+  body: '{}'
+- match: ^https:\/\/spamblocker-api\.zeekstudio\.com\/checkVersion
+  status_code: 200
+  headers:
+    Content-Type: application/json
+  body: '{}'
+- match: ^https:\/\/fmapp\.chinafamilymart\.com\.cn\/api\/app\/market\/start\/ad
+  status_code: 200
+  headers:
+    Content-Type: application/json
+  body: '{}'
+- match: ^https:\/\/mobads\.baidu\.com\/cpro\/ui\/mads\.php
+  status_code: 200
+  headers:
+    Content-Type: application/json
+  body: '{}'
+- match: ^https:\/\/api\.xiaoyuzhoufm\.com\/v\d\/flash
+  status_code: 200
+  headers:
+    Content-Type: application/json
+  body: '{}'
+- match: ^https:\/\/api\.xiaoyuzhoufm\.com\/v\d\/ai
+  status_code: 200
+  headers:
+    Content-Type: application/json
+  body: '{}'
+- match: ^https:\/\/api\.xiaoyuzhoufm\.com\/v\d\/search\/get
+  status_code: 200
+  headers:
+    Content-Type: application/json
+  body: '{}'
+- match: ^https?:\/\/api\.xiaoyuzhoufm\.com\/v\d\/category
+  status_code: 200
+  headers:
+    Content-Type: application/json
+  body: '{}'
 - match: ^https:\/\/api\.alipan\.com\/adrive\/v1\/file\/getTopFolders
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/member\.alipan\.com\/v2\/activity\/sign_in_luckyBottle
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.(?:allresource|predict)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.advertisementservice\.getadv
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alimama\.etao\.config\.query\/.+?etao_advertise
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alimusic\.common\.mobileservice\.startinit
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.etao\.noah\.query\/.+tao_splash
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.film\.mtopadvertiseapi\.queryadvertise
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.o2o\.ad\.gateway\.get
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.activity\.querytmsresources
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/heic\.alicdn\.com\/imgextra\/i\d\/\d*\/?[\w!]+-\d-(?:octopus|tps-1125-1602|tps-1080-1920)\.(?:jpg|png)_(?:1\d{3}|9\d{2})x(?:1\d{3}|9\d{2})q[59]0
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.adx\.flyad\.getad
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(?:volvo\.secondfloor\.getconfig|wireless\.home\.newface\.awesome\.get)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/pan\.baidu\.com\/(?:act\/|aipic\/|aisearch\/|api\/getsyscfg\?|rest\/)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.douban\.com\/v2\/app_ads\/splash\w+
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/(?:img|qnmob)3\.doubanio\.com\/view\/dale-online\/dale_ad\/public\/\w+
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https?:\/\/api\.douban\.com\/v\d\/app_ads\/
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https?:\/\/api\.douban\.com\/b.*\/common_ads\?.*
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/hfapp-service\.qweather\.net\/v2\.0\/app\/ad\/list\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/acs-m\.freshippo\.com\/gw\/mtop\.wdk\.render\.querysinglepage\/
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver
   status_code: 200
-  body: '{}'
-- match: ^https:\/\/api\.coolapk\.com\/v6\/search\?.*type=hotSearch
-  status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/p0\.pipi\.cn\/(?:adAdmin|mediaplus\/maoyantong_ads_fe)\/\w+\.jpg\?imageMogr2\/quality\/
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/p0\.pipi\.cn\/(?:adAdmin|mediaplus\/maoyantong_ads_fe)\/\w+\.(?:jpg|png)\?imageMogr2\/thumbnail\/(?:860x0|!165x165|!1049x1169)
   status_code: 200
-  body: '{}'
-- match: ^http:\/\/app-cdn\.2q10\.com\/app\/ical\/honored\?
-  status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^http:\/\/wmapi\.meituan\.com\/api\/v7\/(?:loadInfo|openscreen|startpicture)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/flowplus\.meituan\.net\/v1\/mss_\w+\/linglong\/\d+\.jpg
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/img\.meituan\.net\/bizad\/bizad_brandCpt_\d+\.jpg
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/s3plus\.meituan\.net\/ocean-blk-index\/index\/blk_conf_\d+\.json
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/s3plus\.meituan\.net\/v1\/mss_\w+\/(?:brandcpt-vedio|waimai-alita)\/\w+\.zip$
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/osg-service\.sgcc\.com\.cn:18600\/emss-pfa-appset-front\/bootpageoutter\/
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.m\.mi\.com\/(?:v1\/(?:app\/popup_info|home\/page_feed|misearch\/search_input)|v2\/search\/search_default)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/shop-api\.retail\.mi\.com\/mtop\/navi\/(?:rec\/merge\/|skywheel\/mishop\/splash)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/(?:banner|carousel\/banners|myTab|openingBanner)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 scriptings:
 - http_request:
@@ -514,11 +678,6 @@ scriptings:
     timeout: 60
     body_required: true
 - http_response:
-    name: 移除酷安广告
-    match: ^https:\/\/api\.coolapk\.com\/v6\/(?:feed\/detail|feed\/replyList|page\/dataList|main\/dataList|main\/indexV8|main\/init)
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Coolapk.js
-    body_required: true
-- http_response:
     name: 移除小米商城广告
     match: ^https:\/\/api\.m\.mi\.com\/v1\/app\/start
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/BlockAds.js
@@ -558,10 +717,15 @@ scriptings:
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Missav.js
     body_required: true
 - http_request:
-    name: '{{{Dsenrp55去广告}}}'
+    name: '{{{移除Dsenrp55广告}}}'
     match: ^https:\/\/ghfgnm\.com\/mmapi\/m3u8\/p\/.+\.m3u8
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Dsenrp55.js
     timeout: 60
+    body_required: true
+- http_response:
+    name: 小宇宙首页净化
+    match: ^https:\/\/api\.xiaoyuzhoufm\.com\/v1\/discovery-feed\/list
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/Xiaoyuzhou/Clean_home_feed.js
     body_required: true
 mitm:
   hostnames:
@@ -588,7 +752,6 @@ mitm:
     - hfapp-service.qweather.net
     - acs-m.freshippo.com
     - gab.122.gov.cn
-    - api.coolapk.com
     - adserviceretry.kglink.cn
     - p0.pipi.cn
     - flowplus.meituan.net
@@ -617,4 +780,9 @@ mitm:
     - missav.ws
     - dsenrp55.com
     - ghfgnm.com
+    - '*.kelee.one'
+    - kelee.one
     - api.xiaoyuzhoufm.com
+    - mobads.baidu.com
+    - fmapp.chinafamilymart.com.cn
+    - spamblocker-api.zeekstudio.com
