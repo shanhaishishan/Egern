@@ -1,9 +1,6 @@
 name: 微博去广告
-description: 过滤广告及去除各部分推广模块，全面净化微博
-open_url: ''
+description: 过滤广告及去除各部分推广模块，全面净化微博。
 author: RuCu6[https://github.com/RuCu6], zmqcherish[https://github.com/zmqcherish]
-homepage: https://github.com/mist-whisper/Surge/blob/master/README.md
-icon: https://raw.githubusercontent.com/mist-whisper/Icon/master/App_icon/120px/Weibo.png
 rules:
 - domain_suffix:
     match: uve.weibo.com
@@ -17,57 +14,98 @@ rules:
 map_locals:
 - match: ^https:\/\/api\.weibo\.cn\/2\/(?:ug\/checkin\/list|push\/daily)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.weibo\.cn\/2\/!\/live\/media_homelist\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.weibo\.cn\/2\/comments\/bullet_screens\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.weibo\.cn\/2\/photo\/info\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.weibo\.cn\/2\/statuses\/(?:container_positive|push_info)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.weibo\.cn\/2\/vote\/get_vote_detail\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.weibo\.cn\/2\/!\/chaohua\/discovery\/home_bottom\/switch\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.weibo\.cn\/2\/!\/huati\/(?:discovery_home_bottom_getdotinfo|mobile_discovery_searchchange)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.weibo\.cn\/2\/!\/wbox\/\w+\/(?:home_bottom_modal|interest_category)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.weibo\.cn\/2\/search\/container_discover\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.weibo\.cn\/2\/hot\/hours_spotlight\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.weibo\.cn\/2\/video\/redpacket\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.weibo\.cn\/!\/(sug\/list\/finderchange|was\/finder\/searchbarchange)\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/api\.weibo\.cn\/2\/video\/tiny_video_info_show\?
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/bootrealtime\.uve\.weibo\.com\/v[23]\/ad\/realtime
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/(?:get-lbs-cell-info\.php|sdkconfig\.php)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/card\.weibo\.com\/article\/m\/aj\/(?:reward|uvead)
   status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 - match: ^https:\/\/weibo\.com\/ttarticle\/x\/m\/aj\/(?:reward|uvead)
   status_code: 200
+  headers:
+    Content-Type: application/json
+  body: '{}'
+- match: ^https:\/\/api\.weibo\.cn\/2\/!\/was\/finder\/searchbarchange
+  status_code: 200
+  headers:
+    Content-Type: application/json
   body: '{}'
 scriptings:
 - http_response:
@@ -151,23 +189,18 @@ scriptings:
     script_url: https://kelee.one/Resource/Script/Weibo/Weibo_remove_ads.js
     body_required: true
 - http_response:
-    name: 移除开屏广告
+    name: 移除开屏广告 preload
     match: ^https:\/\/bootpreload\.uve\.weibo\.com\/v[12]\/ad\/preload
     script_url: https://kelee.one/Resource/Script/Weibo/Weibo_remove_ads.js
     body_required: true
 - http_response:
-    name: 移除开屏广告
+    name: 移除开屏广告 sdkad
     match: ^https:\/\/sdkapp\.uve\.weibo\.com\/interface\/sdk\/sdkad\.php
     script_url: https://kelee.one/Resource/Script/Weibo/Weibo_remove_ads.js
     body_required: true
 - http_response:
-    name: 移除开屏广告
+    name: 移除开屏广告 wbapplua
     match: ^https:\/\/wbapp\.uve\.weibo\.com\/(?:preload\/get_ad|wbapplua\/wbpullad\.lua)
-    script_url: https://kelee.one/Resource/Script/Weibo/Weibo_remove_ads.js
-    body_required: true
-- http_response:
-    name: 会员图标
-    match: ^https:\/\/new\.vip\.weibo\.cn\/aj\/appicon\/list\?
     script_url: https://kelee.one/Resource/Script/Weibo/Weibo_remove_ads.js
     body_required: true
 mitm:
