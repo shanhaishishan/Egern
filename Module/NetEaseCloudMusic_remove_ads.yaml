@@ -1,21 +1,26 @@
 name: 网易云音乐去广告
-description: 过滤网易云音乐广告，并允许自定义界面。\n解锁网易云音乐会员，非会员用户在模块参数中自行开启。
+description: |-
+  过滤网易云音乐广告，并允许自定义界面。
+  解锁网易云音乐会员，非会员用户在模块参数中自行开启。
 compat_arguments:
   共享会员: '#'
-  漫游: '0'
-  笔记: '0'
-  发现: '0'
+  漫游: '1'
+  笔记: '1'
+  发现: '1'
   问候语: '0'
   排行榜: '0'
   每日推荐: '0'
   推荐歌单: '0'
-  最近常听: '0'
-  雷达歌单: '0'
-  音乐合伙人: '0'
+  最近常听: '1'
+  雷达歌单: '1'
+  音乐合伙人: '1'
   推荐专属歌单: '0'
   你的专属歌单: '0'
-compat_arguments_desc: '将 # 改成任意名称即可开启对应脚本\n\n隐藏为:1/true  不隐藏为:0/false'
-author: Keywos[https://github.com/Keywos], RuCu6[https://github.com/RuCu6], wish[https://github.com/mist-whisper], Yuheng0101[https://raw.githubusercontent.com/Yuheng0101]
+compat_arguments_desc: |-
+  将 # 改成任意名称即可开启对应脚本
+
+  隐藏为:1/true  不隐藏为:0/false
+author: Keywos[https://github.com/Keywos], RuCu6[https://github.com/RuCu6], wish[https://github.com/mist-whisper], anyehttp[https://github.com/anyehttp]
 homepage: https://github.com/mist-whisper/Surge/blob/master/README.md
 icon: https://raw.githubusercontent.com/mist-whisper/Icon/master/App_icon/120px/NeteaseCloudMusic.png
 rules:
@@ -53,46 +58,6 @@ map_locals:
     Content-Type: application/json
   body: '{}'
 scriptings:
-- http_request:
-    name: '{{{共享会员}}}'
-    match: ^https:\/\/interface3?\.music\.163\.com\/eapi\/playermode\/
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
-    timeout: 60
-- http_request:
-    name: '{{{共享会员}}}'
-    match: ^https:\/\/interface3?\.music\.163\.com\/eapi\/search\/complex\/(page|rec\/song\/get)
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
-    timeout: 60
-- http_request:
-    name: '{{{共享会员}}}'
-    match: ^https:\/\/interface3?\.music\.163\.com\/eapi\/v3\/song\/detail
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
-    timeout: 60
-- http_request:
-    name: '{{{共享会员}}}'
-    match: ^https:\/\/interface3?\.music\.163\.com\/eapi\/song\/(chorus|enhance\/|play\/|type\/detail\/get)
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
-    timeout: 60
-- http_request:
-    name: '{{{共享会员}}}'
-    match: ^https:\/\/interface3?\.music\.163\.com\/eapi\/(v1\/artist\/top\/song|v3\/discovery\/recommend\/songs)
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
-    timeout: 60
-- http_request:
-    name: '{{{共享会员}}}'
-    match: ^https:\/\/interface3?\.music\.163\.com\/eapi\/vipnewcenter\/app\/resource\/newaccountpage
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
-    timeout: 60
-- http_request:
-    name: '{{{共享会员}}}'
-    match: ^https?:\/\/interface3?\.music\.163\.com\/eapi\/(homepage\/|v6\/)?playlist\/
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
-    timeout: 60
-- http_request:
-    name: '{{{共享会员}}}'
-    match: ^https?:\/\/interface3?\.music\.163\.com\/eapi\/vipauth\/app\/auth\/(soundquality\/)?query
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
-    timeout: 60
 - http_response:
     name: 评论区、热推、有话想说、分享一下、歌曲下的祝福等小提示
     match: ^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/e?api\/(batch|v\d\/resource\/comment\/floor\/get)
@@ -105,7 +70,7 @@ scriptings:
     match: ^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/e?api\/(homepage\/block\/page|link\/page\/rcmd\/(resource\/show|block\/resource\/multi\/refresh))
     script_url: https://raw.githubusercontent.com/Keywos/rule/main/script/wy/js/wyres.js
     arguments:
-      _compat.$argument: '{"PRGG":"{{{问候语}}}","PRDRD":"{{{每日推荐}}}","PRSCVPT":"{{{推荐歌单}}}","PRST":"{{{最近常听}}}","HMPR":"{{{音乐合伙人}}}","PRRR":"{{{雷达歌单}}}","PRRK":"{{{排行榜}}}","PRMST":"{{{推荐专属歌单}}}","PRCN":"{{{你的专属歌单}}}"}'
+      _compat.$argument: '{"PRGG":"0","PRDRD":"0","PRSCVPT":"0","PRST":"1","HMPR":"1","PRRR":"1","PRRK":"0","PRMST":"0","PRCN":"0"}'
     timeout: 20
     body_required: true
     binary_body: true
@@ -114,7 +79,7 @@ scriptings:
     match: ^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/e?api\/link\/home\/framework\/tab
     script_url: https://raw.githubusercontent.com/Keywos/rule/main/script/wy/js/wyres.js
     arguments:
-      _compat.$argument: '{"MY":"{{{漫游}}}","DT":"{{{笔记}}}","FX":"{{{发现}}}"}'
+      _compat.$argument: '{"MY":"1","DT":"1","FX":"1"}'
     timeout: 20
     body_required: true
     binary_body: true
