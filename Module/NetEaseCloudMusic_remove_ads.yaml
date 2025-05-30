@@ -21,8 +21,6 @@ compat_arguments_desc: |-
 
   隐藏为:1/true  不隐藏为:0/false
 author: Keywos[https://github.com/Keywos], RuCu6[https://github.com/RuCu6], wish[https://github.com/mist-whisper], anyehttp[https://github.com/anyehttp]
-homepage: https://github.com/mist-whisper/Surge/blob/master/README.md
-icon: https://raw.githubusercontent.com/mist-whisper/Icon/master/App_icon/120px/NeteaseCloudMusic.png
 rules:
 - domain:
     match: iadmusicmat.music.126.net
