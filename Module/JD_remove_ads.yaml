@@ -1,8 +1,14 @@
 name: 京东去广告
-description: 移除京东开屏广告，精简我的页面产品推广，下滑或点击商品详情即可显示比价信息。\n首次使用需要下载慢慢买APP，点击我的页面获取CK数据，无需登录。
+description: |-
+  移除京东开屏广告，精简我的页面产品推广，下滑或点击商品详情即可显示比价信息。
+  首次使用需要下载慢慢买APP，点击我的页面获取CK数据，无需登录。
 compat_arguments:
   账号捕获: 获取慢慢买CK
-compat_arguments_desc: '[参数设置]\n账号捕获:慢慢买 CK 脚本启停\n   ├ 慢慢买CK：启用（默认值）\n   └ 填入"#"：获取后注释停用'
+compat_arguments_desc: |-
+  [参数设置]
+  账号捕获:慢慢买 CK 脚本启停
+     ├ 慢慢买CK：启用（默认值）
+     └ 填入"#"：获取后注释停用
 open_url: ''
 author: RuCu6[https://github.com/RuCu6], githubdulong[https://github.com/githubdulong], wish[https://github.com/mist-whisper]
 homepage: https://github.com/mist-whisper/Surge/blob/master/README.md
@@ -36,17 +42,15 @@ scriptings:
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/JD/JD_remove_ads.js
     body_required: true
 - http_request:
-    name: 账号捕获
+    name: 获取慢慢买CK
     match: ^https?:\/\/apapia-sqk-weblogic\.manmanbuy\.com/baoliao\/center\/menu
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/JD/MmmCK.js
-    arguments:
-      _compat.$argument: '{"MMMCK_SCRIPT":{{{账号捕获}}}}'
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/JD/JD_Price.js
     body_required: true
     binary_body: false
 - http_response:
     name: 京东比价
     match: ^https:\/\/in\.m\.jd\.com\/product\/graphext\/\d+\.html
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/JD/old_JD_Price.js
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/JD/JD_Price.js
     timeout: 30
     body_required: true
     binary_body: false
