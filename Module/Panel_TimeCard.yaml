@@ -1,0 +1,10 @@
+name: 节假日信息
+description: 显示节假日的信息
+author: smartmimi[https://github.com/smartmimi]
+scriptings:
+- generic:
+    name: Timecard
+    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/Tools/TimeCard.js
+    timeout: 10
+panels:
+- name: Timecard
