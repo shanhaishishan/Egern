@@ -57,21 +57,21 @@ map_locals:
   body: '{}'
 scriptings:
 - http_request:
-    name: '共享会员'
+    name: 共享会员
     match: ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:v1\/artist\/top\/song|v3\/discovery\/recommend\/songs)
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
     body_required: true
     binary_body: false
 - http_request:
-    name: '共享会员'
+    name: 共享会员
     match: ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/v3\/song\/detail
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
     body_required: true
     binary_body: false
 - http_request:
-    name: '共享会员'
+    name: 共享会员
     match: ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/song\/(?:chorus|enhance\/|play\/|type\/detail\/get)
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
@@ -85,28 +85,28 @@ scriptings:
     body_required: true
     binary_body: false
 - http_request:
-    name: '共享会员'
+    name: 共享会员
     match: ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/search\/(?:complex\/page|complex\/rec\/song\/get|song\/list\/page)
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
     body_required: true
     binary_body: false
 - http_request:
-    name: '共享会员'
+    name: 共享会员
     match: ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/vipnewcenter\/app\/resource\/newaccountpage
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
     body_required: true
     binary_body: false
 - http_request:
-    name: '共享会员'
+    name: 共享会员
     match: ^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/(homepage\/|v6\/)?playlist\/(?!(?:delete|subscribe|unsubscribe))
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
     body_required: true
     binary_body: false
 - http_request:
-    name: '共享会员'
+    name: 共享会员
     match: ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/vipauth\/app\/auth\/(soundquality\/)?query
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
