@@ -1,7 +1,7 @@
 name: 网易云音乐去广告
 description: |-
   过滤网易云音乐广告，并允许自定义界面。
-  解锁网易云音乐会员，会员用户在模块参数中注释掉即可。
+  解锁网易云音乐会员，非会员用户在模块参数中自行开启。
 compat_arguments:
   共享会员: '#'
   漫游: '1'
@@ -17,7 +17,7 @@ compat_arguments:
   推荐专属歌单: '0'
   你的专属歌单: '0'
 compat_arguments_desc: |-
-  填入 # 即可关闭对应脚本
+  将 # 改成任意名称即可开启对应脚本
 
   隐藏为:1/true  不隐藏为:0/false
 author: Keywos[https://github.com/Keywos], RuCu6[https://github.com/RuCu6], wish[https://github.com/mist-whisper], anyehttp[https://github.com/anyehttp]
@@ -57,56 +57,56 @@ map_locals:
   body: '{}'
 scriptings:
 - http_request:
-    name: '{{{黑胶会员}}}'
+    name: '{{{共享会员}}}'
     match: ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:v1\/artist\/top\/song|v3\/discovery\/recommend\/songs)
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
     body_required: true
     binary_body: false
 - http_request:
-    name: '{{{黑胶会员}}}'
+    name: '{{{共享会员}}}'
     match: ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/v3\/song\/detail
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
     body_required: true
     binary_body: false
 - http_request:
-    name: '{{{黑胶会员}}}'
+    name: '{{{共享会员}}}'
     match: ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/song\/(?:chorus|enhance\/|play\/|type\/detail\/get)
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
     body_required: true
     binary_body: false
 - http_request:
-    name: '{{{黑胶会员}}}'
+    name: '{{{共享会员}}}'
     match: ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/playermode\/
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
     body_required: true
     binary_body: false
 - http_request:
-    name: '{{{黑胶会员}}}'
+    name: '{{{共享会员}}}'
     match: ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/search\/(?:complex\/page|complex\/rec\/song\/get|song\/list\/page)
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
     body_required: true
     binary_body: false
 - http_request:
-    name: '{{{黑胶会员}}}'
+    name: '{{{共享会员}}}'
     match: ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/vipnewcenter\/app\/resource\/newaccountpage
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
     body_required: true
     binary_body: false
 - http_request:
-    name: '{{{黑胶会员}}}'
+    name: '{{{共享会员}}}'
     match: ^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/(homepage\/|v6\/)?playlist\/(?!(?:delete|subscribe|unsubscribe))
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
     body_required: true
     binary_body: false
 - http_request:
-    name: '{{{黑胶会员}}}'
+    name: '{{{共享会员}}}'
     match: ^https?:\/\/interface\d?\.music\.163\.com\/eapi\/vipauth\/app\/auth\/(soundquality\/)?query
     script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js
     timeout: 20
