@@ -9,10 +9,7 @@ compat_arguments_desc: |-
   账号捕获:慢慢买 CK 脚本启停
      ├ 慢慢买CK：启用（默认值）
      └ 填入"#"：获取后注释停用
-open_url: ''
 author: RuCu6[https://github.com/RuCu6], githubdulong[https://github.com/githubdulong], wish[https://github.com/mist-whisper]
-homepage: https://github.com/mist-whisper/Surge/blob/master/README.md
-icon: https://raw.githubusercontent.com/mist-whisper/Icon/master/App_icon/120px/JD.png
 rules:
 - domain:
     match: dns.jd.com
