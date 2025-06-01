@@ -5,7 +5,7 @@ compat_arguments:
   创作中心: '0'
   过滤置顶评论广告: '1'
   空降助手: bilibili.airborne
-  空降助手弹幕版: '#'
+  空降助手iPad版: '#'
 compat_arguments_desc: |-
   动态最常访问: [true, false, auto]
   - true: 始终显示
@@ -22,7 +22,7 @@ compat_arguments_desc: |-
 
   空降助手: 默认开启，配置为"#"时关闭
 
-  空降助手弹幕版: 默认关闭，仅限Ipad开启
+  空降助手iPad版: 默认关闭，仅限ipad开启
 author: Maasea[https://github.com/Maasea], RuCu6[https://github.com/RuCu6], kokoryh[https://github.com/kokoryh], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md],wish[https://github.com/mist-whisper]
 rules:
 - domain:
@@ -72,7 +72,7 @@ scriptings:
 - http_request:
     name: bilibili.airborne
     match: ^https:\/\/(?:grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.app\.playerunite\.v1\.Player\/PlayViewUnite$
-    script_url: https://raw.githubusercontent.com/mist-whisper/Script/master/BiliBili/BiliBili_airborne_kokoryh.js
+    script_url: https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.airborne.js
     body_required: true
     binary_body: true
 - http_response:
