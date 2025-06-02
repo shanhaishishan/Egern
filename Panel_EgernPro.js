@@ -2,9 +2,9 @@
  * showEgernStartPanel.js（针对 Egern 环境改写） 
  *
  * 说明：
- * 1. 用原生 fetch() 去调用 Egern 本地管理 API，例如 GET http://127.0.0.1:8001/v1/traffic 
- *    和 GET http://127.0.0.1:8001/v1/profiles/reload。
- * 2. 如果你的 Egern 管理 API 端口不是 8001，请把下面所有出现 “8001” 的地方改成你实际的端口号。
+ * 1. 用原生 fetch() 去调用 Egern 本地管理 API，例如 GET http://127.0.0.1:9090/v1/traffic 
+ *    和 GET http://127.0.0.1:9090/v1/profiles/reload。
+ * 2. 如果你的 Egern 管理 API 端口不是 9090，请把下面所有出现 “9090” 的地方改成你实际的端口号。
  * 3. 最后依然通过 $done({ title, content, icon, "icon-color" }) 返回给面板渲染。
  */
 
@@ -23,8 +23,8 @@
 
   try {
     // —— 3. 调用 GET /v1/traffic 拿到 { startTime, … } —— 
-    // 注意：下面把端口写成了 8001 → 如果你的 Egern API 端口不是 8001，请修改！
-    const traffic = await fetchJSON("http://127.0.0.1:8001/v1/traffic");
+    // 注意：下面把端口写成了 9090 → 如果你的 Egern API 端口不是 9090，请修改！
+    const traffic = await fetchJSON("http://127.0.0.1:9090/v1/traffic");
 
     if (!traffic || typeof traffic.startTime !== "number") {
       throw new Error("接口返回数据不包含 traffic.startTime");
@@ -41,9 +41,9 @@
     //    并且再次重新计算一次最新的时长。 
     if ($trigger === "button") {
       // 触发配置重载，告诉 Egern “请重新应用配置”
-      await fetchNoReturn("http://127.0.0.1:8001/v1/profiles/reload");
+      await fetchNoReturn("http://127.0.0.1:9090/v1/profiles/reload");
       // 再次去拿最新的 startTime（有可能刚重载，时长不变，但我们仍重新读一遍）
-      const traffic2 = await fetchJSON("http://127.0.0.1:8001/v1/traffic");
+      const traffic2 = await fetchJSON("http://127.0.0.1:9090/v1/traffic");
       if (traffic2 && typeof traffic2.startTime === "number") {
         const startMs2 = Math.floor(traffic2.startTime * 1000);
         const durationStr2 = formatDuration(Date.now(), startMs2);
