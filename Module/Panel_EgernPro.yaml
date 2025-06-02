@@ -10,5 +10,3 @@ scriptings:
     timeout: 10
 panels:
   - name: "EgernPro"
-    icon: "paperplane.circle"
-    color: "#f6c970"
