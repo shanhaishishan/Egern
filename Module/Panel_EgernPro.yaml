@@ -1,7 +1,7 @@
 name: Egern Pro
 description: 显示Egern的启动时间
 author: Rabbit-Spec[https://github.com/Rabbit-Spec]
-scriptings: EgernPro,update-interval=1
+scriptings: 
 - generic:
     name: EgernPro
     script_url: https://raw.githubusercontent.com/mist-whisper/Egern/master/Panel_EgernPro.js
