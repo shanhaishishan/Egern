@@ -1,0 +1,12 @@
+name: Egern Pro
+description: 显示Egern的启动时间
+author: Rabbit-Spec[https://github.com/Rabbit-Spec]
+scriptings:
+- generic:
+    name: EgernPro
+    script_url: https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Module/Panel/Surge-Pro/Moore/SurgePro.js
+    arguments:
+      _compat.$argument: icon=paperplane.circle&color=#f6c970
+    timeout: 10
+panels:
+- name: EgernPro
