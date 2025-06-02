@@ -1,16 +1,14 @@
-name: EgernPro
-# 如果存放在本地，请写 file:// 前缀；如果放在远程仓库，则写成 https://...
-url: https://raw.githubusercontent.com/mist-whisper/Egern/master/Module/Panel_EgernPro.yaml
-enabled: true
-
-# —— 面板模块配置 —— 
+name: Egern Pro
+description: 显示Egern的启动时间
+author: Rabbit-Spec[https://github.com/Rabbit-Spec]
+scriptings: EgernPro,update-interval=1
+- generic:
+    name: EgernPro
+    script_url: https://raw.githubusercontent.com/mist-whisper/Egern/master/Panel_EgernPro.js
+    arguments:
+      _compat.$argument: icon=paperplane.circle&color=#f6c970
+    timeout: 10
 panels:
   - name: "EgernPro"
     icon: "paperplane.circle"
     color: "#f6c970"
-    # 指向下面要新建的 JS 脚本，保证路径正确
-    script_url: https://raw.githubusercontent.com/mist-whisper/Egern/master/Panel_EgernPro.js
-    timeout: 10
-
-# （可选）如果你想让面板脚本自动定期更新，也可以加上 update_interval，例如：
-#    update_interval: 86400    # 每天检查一次远程仓库（本地路径可忽略）
