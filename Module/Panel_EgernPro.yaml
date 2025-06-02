@@ -4,7 +4,7 @@ author: Rabbit-Spec[https://github.com/Rabbit-Spec]
 scriptings:
 - generic:
     name: EgernPro
-    script_url: https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Module/Panel/Surge-Pro/Moore/SurgePro.js
+    script_url: https://raw.githubusercontent.com/mist-whisper/Egern/master/Panel_EgernPro.js
     arguments:
       _compat.$argument: icon=paperplane.circle&color=#f6c970
     timeout: 10
