@@ -1,59 +1,105 @@
-#!name=爱奇艺
-#!desc=悦享品质
-#!author=RuCu6[https://github.com/RuCu6]
-#!icon=https://raw.githubusercontent.com/sooyaaabo/Loon/main/Icon/App-Icon/IQIYI.png
-#!openUrl=https://apps.apple.com/app/id393765873
-#!tag=去广告
-#!homepage=https://github.com/sooyaaabo/Egern
-#!date=2025-05-13 22:00
+# 爱奇艺去广告模块 (YAML 格式)
 
-[Rule]
-# 放行地址
-DOMAIN-SUFFIX,cupid.iqiyi.com,DIRECT
-# 拦截地址
-DOMAIN,api.iqiyi.com,REJECT
-DOMAIN,access.if.iqiyi.com,REJECT
-IP-CIDR,103.44.59.54/32,REJECT,no-resolve
-IP-CIDR,111.63.147.158/32,REJECT,no-resolve
-IP-CIDR,116.211.198.237/32,REJECT,no-resolve
+# 模块信息
+name: 爱奇艺
+desc: 悦享品质
+author: RuCu6[https://github.com/RuCu6]
+icon: https://raw.githubusercontent.com/sooyaaabo/Loon/main/Icon/App-Icon/IQIYI.png
+openUrl: https://apps.apple.com/app/id393765873
+tag: 去广告
+homepage: https://github.com/sooyaaabo/Egern # 保持 Egern 的主页信息
+date: 2025-05-13 22:00
 
-https://www.grammarly.com/ai/ai-writing-tools/paragraph-rewriter
-# body rewrite (需要先进行 URL Rewrite 才能执行 Body Rewrite)
-# 这些 URL Rewrite 通常在 Egern 中不是必需的，因为 Body Rewrite 可以直接作用于响应体。
-# 如果 Egern 的 Body Rewrite 无法直接匹配原始 URL，才需要考虑这些。
-# 但对于本例，直接在 Body Rewrite 中使用正则表达式匹配更常见。
+# 规则部分
+# 在 YAML 中，通常会将规则定义为列表或字典
+# 这里使用一个顶层键 'rules' 来包含所有规则
+rules:
+  # 放行地址
+  - type: DOMAIN-SUFFIX
+    value: cupid.iqiyi.com
+    action: DIRECT
+  # 拦截地址
+  - type: DOMAIN
+    value: api.iqiyi.com
+    action: REJECT
+  - type: DOMAIN
+    value: access.if.iqiyi.com
+    action: REJECT
+  - type: IP-CIDR
+    value: 103.44.59.54/32
+    action: REJECT
+    no-resolve: true # Egern 的 no-resolve 对应 YAML 中的布尔值 true
+  - type: IP-CIDR
+    value: 111.63.147.158/32
+    action: REJECT
+    no-resolve: true
+  - type: IP-CIDR
+    value: 116.211.198.237/32
+    action: REJECT
+    no-resolve: true
 
-[HTTP Response]
-# body rewrite
-^https?://cards.iqiyi.com/views_home/3.0/qy_home\? url-regex delpaths([["base","statistics"]])
-^https?://cards.iqiyi.com/views_home/3.0/qy_home\? url-regex del(.cards[] | select(.alias_name == "focus" or .alias_name == "ad_mobile_flow" or .alias_name == "ad_trueview"))
-^https?://cards.iqiyi.com/views_category/3.0/category_home\? url-regex del(.base.statistics | select(.ad_str)) | del(.cards[] | select(.alias_name == "entrence_focus" or .alias_name == "ad_trueview"))
-^https?://cards.iqiyi.com/waterfall(-plt)?/3.0/feed\? url-regex del(.base.statistics | select(.ad_str)) | del(.. | select(.block_class?))
-^https?://cards.iqiyi.com/views_plt/3.0/player_tabs_v2\? url-regex .kv_pair.activity_tab |= (fromjson | map(select(.tab_text=="包场")) | tojson)
-^https?://cards.iqiyi.com/views_plt/3.0/player_tabs_v2\? url-regex del(.cards[] | select(.alias_name == "play_vip_promotion" or .alias_name == "play_detail_tag" or .alias_name == "play_chat_entrance" or .alias_name == "play_ad_no_vip" or .alias_name == "play_vertical_short_video" or .alias_name == "play_rap_custom" or .alias_name == "play_topical_tab" or .alias_name == "play_vertical" or .alias_name == "play_water_fall_like")) | del(.. | select(.block_class?))
-^https?://comment-card.iqiyi.com/views_comment/3.0/long_video_comments\? url-regex ""
-^https?://cards.iqiyi.com/views_search/3.0/hot_query_search\? url-regex .cards |= map(select(.alias_name as $name | $name != "ad_trueview" and $name != "ad_mobile_flow" and $name != "search_mid_text_ad")) | if .base.statistics.ad_str? then del(.base.statistics) else . end
-^https?://comment-card.iqiyi.com/views_comment/3.0/long_video_comments\? url-regex .cards |= map(select(has("alias_name")))
-^https?://iface2.iqiyi.com/views_menus/3.0/bottom_theme\? url-regex delpaths([["theme_list"]])
-^https?://iface2.iqiyi.com/views_menus/3.0/bottom_theme\? url-regex .cards |= map(.items |= map(select(.other.bottom_tab_type == "rec" or .other.bottom_tab_type == "vip" or .other.bottom_tab_type == "my")))
-^https?://iface2.iqiyi.com/views_menus/3.0/home_top_menu\? url-regex .nav_group_data[].nav_list |= map(select(. == "0" or . == "2" or . == "1" or . == "6" or . == "4"))
-^https?://iface2.iqiyi.com/fusion/3.0/common_switch\? url-regex delpaths([["content","resource","cast_device_ad"]])
-^https?://iface2.iqiyi.com/fusion/3.0/common_switch\? url-regex if (getpath(["content","switchs","app_ad"]) | has("app_ad_enable")) then (setpath(["content","switchs","app_ad","app_ad_enable"]; 0)) else . end
-^https?://iface2.iqiyi.com/fusion/3.0/common_switch\? url-regex if (getpath(["content","switchs","app_ad"]) | has("app_ad_duration")) then (setpath(["content","switchs","app_ad","app_ad_duration"]; 0)) else . end
-^https?://iface2.iqiyi.com/fusion/3.0/common_switch\? url-regex if (getpath(["content","switchs","ios_tech"]) | has("kPreadAdHintSwitch")) then (setpath(["content","switchs","ios_tech","kPreadAdHintSwitch"]; 0)) else . end
-^https?://iface2.iqiyi.com/fusion/3.0/common_switch\? url-regex if (getpath(["content","switchs","ios_tech"]) | has("ad_download")) then (setpath(["content","switchs","ios_tech","ad_download"]; 0)) else . end
-^https?://iface2.iqiyi.com/fusion/3.0/common_switch\? url-regex if (getpath(["content","switchs","m_qiyi_ios_tech"]) | has("KFocusAdVideoPlayTimesIn4G")) then (setpath(["content","switchs","m_qiyi_ios_tech","KFocusAdVideoPlayTimesIn4G"]; 0)) else . end
-^https?://(kjp|t7z).cupid.iqiyi.com/mixer\? url-regex delpaths([["adSlots"]])
-^https?://search.video.iqiyi.com/q\? url-regex delpaths([["data"]])
-^https?://iface2.iqiyi.com/aggregate/3.0/getMyMenus\? url-regex .data |= map(select(.statistic.block != "wd_liebiao_2") | select(all(.menuList[]?.statistic2.block; . != "wd_liebiao_3")))
+# HTTP 响应重写部分 (Loon 的 Body Rewrite 对应 Egern 的 HTTP Response)
+# 在 YAML 中，可以定义一个 'http_response' 列表，每个元素是一个重写规则
+http_response:
+  - regex: ^https?://cards.iqiyi.com/views_home/3.0/qy_home\?
+    jq: delpaths([["base","statistics"]])
+  - regex: ^https?://cards.iqiyi.com/views_home/3.0/qy_home\?
+    jq: del(.cards[] | select(.alias_name == "focus" or .alias_name == "ad_mobile_flow" or .alias_name == "ad_trueview"))
+  - regex: ^https?://cards.iqiyi.com/views_category/3.0/category_home\?
+    jq: del(.base.statistics | select(.ad_str)) | del(.cards[] | select(.alias_name == "entrence_focus" or .alias_name == "ad_trueview"))
+  - regex: ^https?://cards.iqiyi.com/waterfall(-plt)?/3.0/feed\?
+    jq: del(.base.statistics | select(.ad_str)) | del(.. | select(.block_class?))
+  - regex: ^https?://cards.iqiyi.com/views_plt/3.0/player_tabs_v2\?
+    jq: '.kv_pair.activity_tab |= (fromjson | map(select(.tab_text=="包场")) | tojson)'
+  - regex: ^https?://cards.iqiyi.com/views_plt/3.0/player_tabs_v2\?
+    jq: 'del(.cards[] | select(.alias_name == "play_vip_promotion" or .alias_name == "play_detail_tag" or .alias_name == "play_chat_entrance" or .alias_name == "play_ad_no_vip" or .alias_name == "play_vertical_short_video" or .alias_name == "play_rap_custom" or .alias_name == "play_topical_tab" or .alias_name == "play_vertical" or .alias_name == "play_water_fall_like")) | del(.. | select(.block_class?))'
+  - regex: ^https?://comment-card.iqiyi.com/views_comment/3.0/long_video_comments\?
+    jq: '""' # 返回空字符串
+  - regex: ^https?://cards.iqiyi.com/views_search/3.0/hot_query_search\?
+    jq: '.cards |= map(select(.alias_name as $name | $name != "ad_trueview" and $name != "ad_mobile_flow" and $name != "search_mid_text_ad")) | if .base.statistics.ad_str? then del(.base.statistics) else . end'
+  - regex: ^https?://comment-card.iqiyi.com/views_comment/3.0/long_video_comments\?
+    jq: '.cards |= map(select(has("alias_name")))'
+  - regex: ^https?://iface2.iqiyi.com/views_menus/3.0/bottom_theme\?
+    jq: delpaths([["theme_list"]])
+  - regex: ^https?://iface2.iqiyi.com/views_menus/3.0/bottom_theme\?
+    jq: '.cards |= map(.items |= map(select(.other.bottom_tab_type == "rec" or .other.bottom_tab_type == "vip" or .other.bottom_tab_type == "my")))'
+  - regex: ^https?://iface2.iqiyi.com/views_menus/3.0/home_top_menu\?
+    jq: '.nav_group_data[].nav_list |= map(select(. == "0" or . == "2" or . == "1" or . == "6" or . == "4"))'
+  - regex: ^https?://iface2.iqiyi.com/fusion/3.0/common_switch\?
+    jq: delpaths([["content","resource","cast_device_ad"]])
+  - regex: ^https?://iface2.iqiyi.com/fusion/3.0/common_switch\?
+    jq: 'if (getpath(["content","switchs","app_ad"]) | has("app_ad_enable")) then (setpath(["content","switchs","app_ad","app_ad_enable"]; 0)) else . end'
+  - regex: ^https?://iface2.iqiyi.com/fusion/3.0/common_switch\?
+    jq: 'if (getpath(["content","switchs","app_ad"]) | has("app_ad_duration")) then (setpath(["content","switchs","app_ad","app_ad_duration"]; 0)) else . end'
+  - regex: ^https?://iface2.iqiyi.com/fusion/3.0/common_switch\?
+    jq: 'if (getpath(["content","switchs","ios_tech"]) | has("kPreadAdHintSwitch")) then (setpath(["content","switchs","ios_tech","kPreadAdHintSwitch"]; 0)) else . end'
+  - regex: ^https?://iface2.iqiyi.com/fusion/3.0/common_switch\?
+    jq: 'if (getpath(["content","switchs","ios_tech"]) | has("ad_download")) then (setpath(["content","switchs","ios_tech","ad_download"]; 0)) else . end'
+  - regex: ^https?://iface2.iqiyi.com/fusion/3.0/common_switch\?
+    jq: 'if (getpath(["content","switchs","m_qiyi_ios_tech"]) | has("KFocusAdVideoPlayTimesIn4G")) then (setpath(["content","switchs","m_qiyi_ios_tech","KFocusAdVideoPlayTimesIn4G"]; 0)) else . end'
+  - regex: ^https?://(kjp|t7z).cupid.iqiyi.com/mixer\?
+    jq: delpaths([["adSlots"]])
+  - regex: ^https?://search.video.iqiyi.com/q\?
+    jq: delpaths([["data"]])
+  - regex: ^https?://iface2.iqiyi.com/aggregate/3.0/getMyMenus\?
+    jq: '.data |= map(select(.statistic.block != "wd_liebiao_2") | select(all(.menuList[]?.statistic2.block; . != "wd_liebiao_3")))'
 
-[Map Local]
-# url-regex 后面跟的是正则表达式，response-body 后面是响应体内容
-^https?://iface2.iqiyi.com/control/3.0/init_proxy\? url-regex response-body ""
-^https?://act.vip.iqiyi.com/interact/api/v2/show\? url-regex response-body ""
-^https?://iface2.iqiyi.com/ivos/interact/video/data\? url-regex response-body ""
-^https?://iface2.iqiyi.com/video/3.0/v_interface_proxy\? url-regex response-body ""
-^https?://iface2.iqiyi.com/views_pop/3.0/pop_control\? url-regex response-body ""
+# 本地映射部分
+# 在 YAML 中，可以定义一个 'map_local' 列表
+map_local:
+  - regex: ^https?://iface2.iqiyi.com/control/3.0/init_proxy\?
+    response_body: "" # 返回空响应体
+  - regex: ^https?://act.vip.iqiyi.com/interact/api/v2/show\?
+    response_body: ""
+  - regex: ^https?://iface2.iqiyi.com/ivos/interact/video/data\?
+    response_body: ""
+  - regex: ^https?://iface2.iqiyi.com/video/3.0/v_interface_proxy\?
+    response_body: ""
+  - regex: ^https?://iface2.iqiyi.com/views_pop/3.0/pop_control\?
+    response_body: ""
 
-[MITM]
-hostname = *.iqiyi.com
+# MITM 主机名
+# 在 YAML 中，可以直接列出主机名
+mitm:
+  hostname:
+    - '*.iqiyi.com'
