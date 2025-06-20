@@ -1,0 +1,210 @@
+vif_only: true
+geoip_db_url: https://geodata.kelee.one/Country-Masaiki.mmdb
+asn_db_url: https://geodata.kelee.one/GeoLite2-ASN-P3TERX.mmdb
+proxy_latency_test_url: http://www.gstatic.com/generate_204
+direct_latency_test_url: http://connectivitycheck.platform.hicloud.com/generate_204
+dns: {}
+policy_groups:
+- external:
+    name: Xiaohou
+    type: fallback
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Apple_Classic.png
+    hidden: false
+- select:
+    name: Xiaoma
+    policies:
+    - DIRECT
+    flatten: true
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Category_Catalog.png
+    hidden: false
+- select:
+    name: XiaoBin
+    policies:
+    - Xiaohou
+    flatten: false
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Category_Food.png
+    hidden: false
+- fallback:
+    name: XinJiaPo
+    policies:
+    - Xiaohou
+    flatten: true
+    filter: (?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)
+    icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/singapore(2).png
+    hidden: false
+- auto_test:
+    name: RiBen
+    policies:
+    - Xiaohou
+    flatten: true
+    filter: (?i)🇯🇵|日本|东京|(\b(JP|Japan)\b)
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+    hidden: false
+- auto_test:
+    name: MeiGuo
+    policies:
+    - Xiaohou
+    flatten: true
+    filter: (?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)
+    icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/US(1).png
+    hidden: false
+- auto_test:
+    name: TaiWan
+    policies:
+    - Xiaohou
+    flatten: true
+    filter: (?i)🇨🇳|🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+    hidden: false
+- auto_test:
+    name: XiangGang
+    policies:
+    - Xiaohou
+    flatten: true
+    filter: (?i)🇭🇰|香港|(\b(HK|Hong)\b)
+    icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/Hongkong(2).png
+    hidden: false
+rules:
+- domain:
+    match: open.e.kuaishou.cn
+    policy: REJECT
+    disabled: false
+- rule_set:
+    match: https://rule.kelee.one/Loon/Gemini.list
+    policy: XiaoBin
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Loon/GitHub/GitHub.list
+    policy: MeiGuo
+    disabled: false
+- domain_keyword:
+    match: hk.hkuk.xyz
+    policy: RiBen
+    disabled: false
+- domain:
+    match: admin.vip.edu.kg
+    policy: RiBen
+    disabled: false
+- domain_keyword:
+    match: 69shuba
+    policy: RiBen
+    disabled: false
+- domain_keyword:
+    match: 101kanshu
+    policy: RiBen
+    disabled: false
+- domain_keyword:
+    match: lovebabyforever
+    policy: RiBen
+    disabled: false
+- domain_keyword:
+    match: v2ex
+    policy: RiBen
+    disabled: false
+- domain:
+    match: cdn.jsdelivr.net
+    policy: RiBen
+    disabled: false
+- domain_keyword:
+    match: boxjs.com
+    policy: RiBen
+    disabled: false
+- domain_keyword:
+    match: missav
+    policy: MeiGuo
+    disabled: false
+- domain_keyword:
+    match: m.uaa.com
+    policy: XinJiaPo
+    disabled: false
+- domain_keyword:
+    match: kelee.one
+    policy: RiBen
+    disabled: false
+- domain:
+    match: proxyinfo.net
+    policy: RiBen
+    disabled: false
+- domain:
+    match: xn--9kqy92aw5h.com
+    policy: RiBen
+    disabled: false
+- domain_keyword:
+    match: v2rayclash
+    policy: RiBen
+    disabled: false
+- rule_set:
+    match: https://kelee.one/Tool/Loon/Rule/AI.list
+    policy: XiaoBin
+    disabled: false
+- rule_set:
+    match: https://rule.kelee.one/Loon/Google.list
+    policy: RiBen
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Telegram/Telegram.list
+    policy: XinJiaPo
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Twitter/Twitter.list
+    policy: TaiWan
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/YouTube/YouTube.list
+    policy: MeiGuo
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Apple/Apple.list
+    policy: Xiaoma
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Apple/Apple_Domain.list
+    policy: Xiaoma
+    disabled: false
+- domain:
+    match: ifconfig.me
+    policy: Xiaoma
+    disabled: false
+- domain_suffix:
+    match: cn
+    policy: Xiaoma
+    disabled: false
+- geoip:
+    match: CN
+    policy: Xiaoma
+    no_resolve: false
+    disabled: false
+- ip_cidr:
+    match: 192.168.0.0/16
+    policy: Xiaoma
+    no_resolve: false
+    disabled: false
+- ip_cidr:
+    match: 10.0.0.0/8
+    policy: Xiaoma
+    no_resolve: false
+    disabled: false
+- ip_cidr:
+    match: 127.0.0.0/8
+    policy: Xiaoma
+    no_resolve: false
+    disabled: false
+- ip_cidr:
+    match: 172.16.0.0/12
+    policy: Xiaoma
+    no_resolve: false
+    disabled: false
+- ip_cidr:
+    match: 192.128.0.0/16
+    policy: Xiaoma
+    no_resolve: false
+    disabled: false
+- ip_cidr:
+    match: 224.0.0.0/24
+    policy: Xiaoma
+    no_resolve: false
+    disabled: false
+- default:
+    policy: Xiaoma
+mitm:
+  enabled: true
