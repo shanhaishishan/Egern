@@ -99,72 +99,72 @@ scriptings:
 - http_response:
     name: 移除路线规划推广
     match: ^https:\/\/m5\.amap\.com\/ws\/aos\/perception\/publicTravel\/beforeNavi\?
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 - http_response:
     name: 移除路线规划、导航结束页推广
     match: ^https:\/\/m5\.amap\.com\/ws\/bus\/plan\/integrate\?
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 - http_response:
     name: 移除导航详情页底部酒店、处理附近页
     match: ^https:\/\/m5\.amap\.com\/ws\/c3frontend\/(?:af-(?:hotel|launch)\/page\/main|af-nearby\/nearby)
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 - http_response:
     name: 移除路线规划推广
     match: ^https:\/\/m5\.amap\.com\/ws\/perception\/drive\/(?:routeInfo|routePlan)
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 - http_response:
     name: 移除导航详情页推广
     match: ^https:\/\/m5\.amap\.com\/ws\/shield\/search\/(?:common\/coupon\/info|poi\/detail)
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 - http_response:
     name: 移除搜索栏推广
     match: ^https:\/\/m5\.amap\.com\/ws\/shield\/search_bff\/hotword\?
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 - http_response:
     name: 移除搜索详情页推广
     match: ^https:\/\/m5\.amap\.com\/ws\/shield\/search_poi\/(?:mps|search\/sp|sug|tips_operation_location)
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 - http_response:
     name: 移除首页推广
     match: ^https:\/\/m5\.amap\.com\/ws\/faas\/amap-navigation\/(?:card-service-plan-home|main-page)
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 - http_response:
     name: 移除首页推广
     match: ^https:\/\/m5\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable\/1\?
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 - http_response:
     name: 移除我的页面推广
     match: ^https:\/\/m5\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaasv3\?
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 - http_response:
     name: 移除附近页推广
     match: ^https:\/\/m5\.amap\.com\/ws\/shield\/search\/nearbyrec_smart\?
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 - http_response:
     name: 移除开屏广告
     match: ^https:\/\/m5\.amap\.com\/ws\/valueadded\/alimama\/splash_screen\?
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 - http_response:
     name: 移除打车页推广卡片、弹窗
     match: ^https:\/\/m5-zb\.amap\.com\/ws\/boss\/(?:car\/order\/content_info|order_web\/friendly_information)
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 - http_response:
     name: 移除打车页红点角标、天气图标
     match: ^https:\/\/m5-zb\.amap\.com\/ws\/promotion-web\/resource(\/home)?\?
-    script_url: https://kelee.one/Resource/Script/Amap/Amap_remove_ads.js
+    script_url: https://raw.githubusercontent.com/sooyaaabo/KeleeOne/refs/heads/Loon/Script/Amap_remove_ads.js
     body_required: true
 mitm:
   hostnames:
